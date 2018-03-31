@@ -27,6 +27,7 @@ class MovieController constructor(private val movieService: MovieService) {
     fun addLikeInteraction(@PathVariable("title") title: String, @Authenticated userUuid: String) =
             movieService.addLikeInteractionTo(title, forUserUserUuid = userUuid)
 
-
+    @GetMapping("/")
+    fun movies() = movieService.findAll()
 }
 

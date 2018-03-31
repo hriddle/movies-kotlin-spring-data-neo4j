@@ -30,6 +30,13 @@ class MovieService constructor(private val movieRepository: MovieRepository,
     }
 
     @Transactional(readOnly = true)
+    fun findAll(): List<MovieDTO> {
+        return movieRepository.findAll().map {
+            MovieDTO.fromEntity(it)
+        }
+    }
+
+    @Transactional(readOnly = true)
     fun findByTitleContaining(term: String) =
             MovieDTO.mapFromEntities(movieRepository.findByTitleContaining(term))
 
