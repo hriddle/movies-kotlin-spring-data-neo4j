@@ -4,12 +4,11 @@ import com.jayway.restassured.RestAssured
 import movies.spring.data.neo4j.api.endpoints.ControllerTest
 import org.hamcrest.core.IsNull
 import org.junit.Test
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 
 class UserIntegrationTests : ControllerTest() {
 
-    @Autowired @Value("@{api.key}") lateinit var apiKey: String
+    @Value("\${api.key}") lateinit var apiKey: String
 
     @Test
     fun getMyUser() {

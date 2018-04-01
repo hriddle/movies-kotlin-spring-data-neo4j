@@ -31,14 +31,12 @@ class MovieRepositoryTest {
         movieRepository.deleteAll()
 
         val matrix = Movie(title = "The Matrix", releasedYear = 1999)
+        val keanu = Person(name = "Keanu Reeves", born = 1964)
+        val neo = Role(movie = matrix, person = keanu)
 
         movieRepository.save(matrix)
-
-        val keanu = Person(name = "Keanu Reeves", born = 1964)
-
         personRepository.save(keanu)
 
-        val neo = Role(movie = matrix, person = keanu)
         neo.addRoleName("Neo")
 
         matrix.addRole(neo)

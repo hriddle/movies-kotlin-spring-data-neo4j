@@ -9,13 +9,12 @@ import movies.spring.data.neo4j.api.service.movie.dto.RoleDTO
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 
 
 class MovieIntegrationTests : ControllerTest() {
 
-    @Autowired @Value("@{api.key}") lateinit var apiKey: String
+    @Value("\${api.key}") lateinit var apiKey: String
 
     @Test
     fun shouldSaveMovies() {

@@ -20,31 +20,19 @@ fun main(args: Array<String>) {
     runApplication<Application>(*args)
 }
 
+//@Bean
+//fun mapperConfigurer() = Jackson2ObjectMapperBuilder().apply {
+//    serializationInclusion(JsonInclude.Include.NON_NULL)
+//    failOnUnknownProperties(true)
+//    featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+//    indentOutput(true)
+//    modules(listOf(KotlinModule()))
+//}
+
 @Configuration
 @EntityScan("movies.spring.data.neo4j.domain.model.persistent")
 class ApplicationConfig {
 
-    @Bean
-    fun kotlinPropertyConfigurer(): PropertySourcesPlaceholderConfigurer {
-        val propertyConfigurer = PropertySourcesPlaceholderConfigurer()
-        propertyConfigurer.setPlaceholderPrefix("@{")
-        propertyConfigurer.setPlaceholderSuffix("}")
-        propertyConfigurer.setIgnoreUnresolvablePlaceholders(true)
-        return propertyConfigurer
-    }
-
-    @Bean
-    fun defaultPropertyConfigurer() = PropertySourcesPlaceholderConfigurer()
-
-
-    @Bean
-    fun mapperConfigurer() = Jackson2ObjectMapperBuilder().apply {
-        serializationInclusion(JsonInclude.Include.NON_NULL)
-        failOnUnknownProperties(true)
-        featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-        indentOutput(true)
-        modules(listOf(KotlinModule()))
-    }
 
 }
 
