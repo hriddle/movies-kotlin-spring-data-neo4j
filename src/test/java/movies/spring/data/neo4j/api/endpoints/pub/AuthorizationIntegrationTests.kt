@@ -7,23 +7,21 @@ import org.hamcrest.core.IsNull
 import org.junit.Test
 
 
-class AuthorizationIntegrationTests : ControllerTest()
-{
+class AuthorizationIntegrationTests : ControllerTest() {
 
     @Test
-    fun authorize_withUserNameAndPassword()
-    {
+    fun authorize_withUserNameAndPassword() {
 
         val testCredentials = mapper.writeValueAsString(
-                CredentialsDTO(email = "jasper@appsquick.ly", password = "password"))
+            CredentialsDTO(email = "jasper@appsquick.ly", password = "password"))
 
         println(testCredentials)
 
         RestAssured.given()
-                .header("content-type", "application/json")
-                .body(testCredentials)
-                .post("/authorization").peek().then()
-                .body("accessToken", IsNull.notNullValue())
+            .header("content-type", "application/json")
+            .body(testCredentials)
+            .post("/authorization").peek().then()
+            .body("accessToken", IsNull.notNullValue())
     }
 
 
